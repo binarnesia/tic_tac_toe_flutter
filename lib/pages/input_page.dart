@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_toe_flutter/constants/app_assets.dart';
 import 'package:tic_tac_toe_flutter/constants/app_colors.dart';
 import 'package:tic_tac_toe_flutter/constants/app_sizes.dart';
+import 'package:tic_tac_toe_flutter/pages/home_page.dart';
 import 'package:tic_tac_toe_flutter/widgets/game_logo.dart';
 import 'package:tic_tac_toe_flutter/widgets/icon_game.dart';
 
@@ -49,7 +50,14 @@ class InputPage extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
+                            (route) => false);
+                      },
                       child: const Text(
                         'Start Game',
                         style: TextStyle(

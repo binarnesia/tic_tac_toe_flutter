@@ -7,9 +7,26 @@ import 'package:tic_tac_toe_flutter/widgets/game_logo.dart';
 import 'package:tic_tac_toe_flutter/widgets/game_tile.dart';
 import 'package:tic_tac_toe_flutter/widgets/players_name.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+List<String> tileList = [
+  '0',
+  '1',
+  '1',
+  '1',
+  '0',
+  '',
+  '',
+  '',
+  '0',
+];
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +47,9 @@ class HomePage extends StatelessWidget {
                   runSpacing: AppSizes.p16,
                   children: [
                     for (int i = 0; i < 9; i++)
-                      const GameTile(
-                        isCircle: true,
-                        isWining: true,
+                      GameTile(
+                        content: tileList[i],
+                        isWining: false,
                       ),
                   ],
                 ),

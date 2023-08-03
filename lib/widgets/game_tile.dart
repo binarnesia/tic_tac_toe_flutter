@@ -5,10 +5,10 @@ import 'package:tic_tac_toe_flutter/constants/app_colors.dart';
 import 'package:tic_tac_toe_flutter/constants/app_sizes.dart';
 
 class GameTile extends StatelessWidget {
-  const GameTile({super.key, this.isCircle = false, this.isWining = false});
+  const GameTile({super.key, this.isWining = false, required this.content});
 
-  final bool isCircle;
   final bool isWining;
+  final String content;
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +20,52 @@ class GameTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppSizes.p4),
           color: isWining ? AppColors.secondaryColor : AppColors.white,
         ),
-        child: SvgPicture.asset(
-          isCircle ? AppAssets.circle : AppAssets.cross,
-          width: (MediaQuery.of(context).size.width - 200) / 3,
-          color: isCircle
-              ? isWining
-                  ? AppColors.white
-                  : AppColors.secondaryColor
-              : isWining
-                  ? AppColors.white
-                  : AppColors.primaryColor,
-        ),
+        child: content == ''
+            ? const TileBlank()
+            : content == '0'
+                ? TileCircle(isWining: isWining)
+                : TileCross(isWining: isWining),
       ),
+    );
+  }
+}
+
+class TileBlank extends StatelessWidget {
+  const TileBlank({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: (MediaQuery.of(context).size.width - 200) / 3,
+      height: (MediaQuery.of(context).size.width - 200) / 3,
+    );
+  }
+}
+
+class TileCircle extends StatelessWidget {
+  const TileCircle({super.key, required this.isWining});
+
+  final bool isWining;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: SvgPicture.asset(
+        AppAssets.circle,
+        color: isWining ? AppColors.white : AppColors.secondaryColor,
+      ),
+    );
+  }
+}
+
+class TileCross extends StatelessWidget {
+  const TileCross({super.key, required this.isWining});
+  final bool isWining;
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(
+      AppAssets.cross,
+      color: isWining ? AppColors.white : AppColors.primaryColor,
     );
   }
 }

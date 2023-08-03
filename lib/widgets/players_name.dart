@@ -17,14 +17,20 @@ class PlayersName extends StatelessWidget {
           Expanded(
             child: ElevatedButton(
               onPressed: () {},
-              child: const Text('Player 1'),
+              child: const Text(
+                'Novita \n 2',
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           AppSizes.gapW8,
           Expanded(
             child: TextButton(
               onPressed: () {},
-              child: const Text('Player 2'),
+              child: const Text(
+                'Marta\n 3',
+                textAlign: TextAlign.center,
+              ),
             ),
           )
         ],
