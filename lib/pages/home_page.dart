@@ -14,12 +14,35 @@ class HomePage extends StatelessWidget {
       body: Stack(
         children: [
           Image.asset(AppAssets.bg),
-          const SafeArea(
-            child: Column(
-              children: [
-                GameLogo(),
-                AppSizes.gapH64,
-              ],
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppSizes.horizontalMargin),
+              child: Column(
+                children: [
+                  const GameLogo(),
+                  AppSizes.gapH64,
+                  // player name
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text('Player 1'),
+                        ),
+                      ),
+                      AppSizes.gapW8,
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {},
+                          child: const Text('Player 2'),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ],

@@ -7,4 +7,5 @@ class AppColors {
   static const Color inactive = Color(0xFFE0E2E2);
   static const Color danger = Color(0xFFEF6497);
   static const Color white = Colors.white;
+  static const Color transparent = Colors.transparent;
 }

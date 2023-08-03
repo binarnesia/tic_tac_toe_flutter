@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppSizes {
+  static const p2 = 2.0;
   static const p4 = 4.0;
   static const p8 = 8.0;
   static const p12 = 12.0;
