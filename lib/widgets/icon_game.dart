@@ -28,7 +28,7 @@ class IconGame extends StatelessWidget {
       ),
       child: SvgPicture.asset(
         isCircle ? AppAssets.circle : AppAssets.cross,
-        width: AppSizes.p32,
+        width: size,
         color: isCircle ? AppColors.secondaryColor : AppColors.primaryColor,
       ),
     );
