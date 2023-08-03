@@ -9,22 +9,33 @@ class IconGame extends StatelessWidget {
     super.key,
     this.isCircle = false,
     this.size = AppSizes.p32,
+    this.isBorder = false,
   });
   const IconGame.circle({
     super.key,
     this.isCircle = true,
     this.size = AppSizes.p32,
+    this.isBorder = false,
   });
 
   final bool isCircle;
   final double size;
+  final bool isBorder;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(AppSizes.p8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppSizes.p4),
+        borderRadius: BorderRadius.circular(AppSizes.p8),
         color: AppColors.white,
+        border: isBorder
+            ? const Border(
+                top: BorderSide(color: AppColors.primaryAccent, width: 2),
+                right: BorderSide(color: AppColors.primaryAccent, width: 2),
+                left: BorderSide(color: AppColors.primaryAccent, width: 2),
+                bottom: BorderSide(color: AppColors.primaryAccent, width: 2),
+              )
+            : null,
       ),
       child: SvgPicture.asset(
         isCircle ? AppAssets.circle : AppAssets.cross,

@@ -15,7 +15,7 @@ class ThemeButton {
       foregroundColor: AppColors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          AppSizes.p12,
+          AppSizes.p8,
         ),
       ),
       side: const BorderSide(
@@ -35,7 +35,7 @@ class ThemeButton {
       foregroundColor: AppColors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          AppSizes.p12,
+          AppSizes.p8,
         ),
       ),
       side: const BorderSide(
