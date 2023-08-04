@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_toe_flutter/constants/app_assets.dart';
 import 'package:tic_tac_toe_flutter/constants/app_colors.dart';
 import 'package:tic_tac_toe_flutter/constants/app_sizes.dart';
+import 'package:tic_tac_toe_flutter/widgets/custom_dialog.dart';
 import 'package:tic_tac_toe_flutter/widgets/game_action_button.dart';
 import 'package:tic_tac_toe_flutter/widgets/game_logo.dart';
 import 'package:tic_tac_toe_flutter/widgets/game_tile.dart';
@@ -19,10 +20,16 @@ class HomePage extends StatefulWidget {
 String isXTurn = 'x';
 late List<String> tileList;
 
+late int scoreX;
+late int scoreO;
+
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     tileList = ['', '', '', '', '', '', '', '', ''];
+    isXTurn = 'x';
+    scoreX = 0;
+    scoreO = 0;
     super.initState();
   }
 
@@ -68,15 +75,35 @@ class _HomePageState extends State<HomePage> {
           tileList[c] != '' &&
           tileList[a] == tileList[b] &&
           tileList[b] == tileList[c]) {
-        print('winner $isXTurn');
+        updateScore(isXTurn);
+        final String winner =
+            isXTurn == 'x' ? widget.playerOne : widget.playerTwo;
+
+        showDialog(
+          context: context,
+          builder: (context) => CustomDialogWidget(
+            resetBoard: resetBoard,
+            winner: winner,
+          ),
+        );
+        // resetBoard();
       }
     }
   }
 
   void resetBoard() {
     setState(() {
+      isXTurn = 'x';
       tileList = ['', '', '', '', '', '', '', '', ''];
     });
+  }
+
+  void updateScore(String winner) {
+    if (winner == 'x') {
+      scoreX += 1;
+    } else {
+      scoreO += 1;
+    }
   }
 
   @override
@@ -95,6 +122,8 @@ class _HomePageState extends State<HomePage> {
                 PlayersName(
                   playerOne: widget.playerOne,
                   playerTwo: widget.playerTwo,
+                  scoreX: scoreX,
+                  scoreO: scoreO,
                 ),
                 AppSizes.gapH32,
                 Wrap(

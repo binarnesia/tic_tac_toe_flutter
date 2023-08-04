@@ -6,10 +6,14 @@ class PlayersName extends StatelessWidget {
     super.key,
     required this.playerOne,
     required this.playerTwo,
+    required this.scoreX,
+    required this.scoreO,
   });
 
   final String playerOne;
   final String playerTwo;
+  final int scoreX;
+  final int scoreO;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +26,7 @@ class PlayersName extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {},
               child: Text(
-                '$playerOne \n 2',
+                '$playerOne\n $scoreX',
                 textAlign: TextAlign.center,
               ),
             ),
@@ -32,7 +36,7 @@ class PlayersName extends StatelessWidget {
             child: TextButton(
               onPressed: () {},
               child: Text(
-                '$playerTwo\n 3',
+                '$playerTwo\n $scoreO',
                 textAlign: TextAlign.center,
               ),
             ),
