@@ -80,6 +80,7 @@ class _HomePageState extends State<HomePage> {
             isXTurn == 'x' ? widget.playerOne : widget.playerTwo;
 
         showDialog(
+          barrierDismissible: false,
           context: context,
           builder: (context) => CustomDialogWidget(
             resetBoard: resetBoard,
@@ -110,43 +111,45 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: Stack(
-        children: [
-          Image.asset(AppAssets.bg),
-          SafeArea(
-            child: Column(
-              children: [
-                AppSizes.gapH32,
-                const GameLogo(),
-                AppSizes.gapH64,
-                PlayersName(
-                  playerOne: widget.playerOne,
-                  playerTwo: widget.playerTwo,
-                  scoreX: scoreX,
-                  scoreO: scoreO,
-                ),
-                AppSizes.gapH32,
-                Wrap(
-                  spacing: AppSizes.p16,
-                  runSpacing: AppSizes.p16,
-                  children: [
-                    for (int i = 0; i < 9; i++)
-                      GameTile(
-                        content: tileList[i],
-                        isWining: false,
-                        changeTurn: () => changeTurn(i),
-                      ),
-                  ],
-                ),
-                AppSizes.gapH32,
-                // Button
-                GameActionButton(
-                  resetBoard: () => resetBoard(),
-                )
-              ],
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Image.asset(AppAssets.bg),
+            SafeArea(
+              child: Column(
+                children: [
+                  AppSizes.gapH32,
+                  const GameLogo(),
+                  AppSizes.gapH64,
+                  PlayersName(
+                    playerOne: widget.playerOne,
+                    playerTwo: widget.playerTwo,
+                    scoreX: scoreX,
+                    scoreO: scoreO,
+                  ),
+                  AppSizes.gapH32,
+                  Wrap(
+                    spacing: AppSizes.p16,
+                    runSpacing: AppSizes.p16,
+                    children: [
+                      for (int i = 0; i < 9; i++)
+                        GameTile(
+                          content: tileList[i],
+                          isWining: false,
+                          changeTurn: () => changeTurn(i),
+                        ),
+                    ],
+                  ),
+                  AppSizes.gapH32,
+                  // Button
+                  GameActionButton(
+                    resetBoard: () => resetBoard(),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

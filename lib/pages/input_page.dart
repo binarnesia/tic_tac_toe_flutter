@@ -38,75 +38,77 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: Stack(
-        children: [
-          Image.asset(AppAssets.bg),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppSizes.horizontalMargin,
-              ),
-              child: Column(
-                children: [
-                  AppSizes.gapH32,
-                  const GameLogo(),
-                  AppSizes.gapH32,
-                  TextField(
-                    controller: playerOneController,
-                    decoration: const InputDecoration(
-                      icon: IconGame(
-                        size: AppSizes.p38,
-                        isBorder: true,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Image.asset(AppAssets.bg),
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSizes.horizontalMargin,
+                ),
+                child: Column(
+                  children: [
+                    AppSizes.gapH32,
+                    const GameLogo(),
+                    AppSizes.gapH32,
+                    TextField(
+                      controller: playerOneController,
+                      decoration: const InputDecoration(
+                        icon: IconGame(
+                          size: AppSizes.p38,
+                          isBorder: true,
+                        ),
+                        hintText: 'Enter player one’s Name',
                       ),
-                      hintText: 'Enter player one’s Name',
                     ),
-                  ),
-                  AppSizes.gapH16,
-                  TextField(
-                    controller: playerTwoController,
-                    onChanged: (value) {
-                      iscompleted();
-                    },
-                    decoration: const InputDecoration(
-                      icon: IconGame.circle(
-                        size: AppSizes.p38,
-                        isBorder: true,
+                    AppSizes.gapH16,
+                    TextField(
+                      controller: playerTwoController,
+                      onChanged: (value) {
+                        iscompleted();
+                      },
+                      decoration: const InputDecoration(
+                        icon: IconGame.circle(
+                          size: AppSizes.p38,
+                          isBorder: true,
+                        ),
+                        hintText: 'Enter player one’s Name',
                       ),
-                      hintText: 'Enter player one’s Name',
                     ),
-                  ),
-                  AppSizes.gapH32,
-                  // button
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: iscompleted()
-                          ? () {
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomePage(
-                                      playerOne: playerOneController.text,
-                                      playerTwo: playerTwoController.text,
+                    AppSizes.gapH32,
+                    // button
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: iscompleted()
+                            ? () {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomePage(
+                                        playerOne: playerOneController.text,
+                                        playerTwo: playerTwoController.text,
+                                      ),
                                     ),
-                                  ),
-                                  (route) => false);
-                            }
-                          : null,
-                      child: const Text(
-                        'Start Game',
-                        style: TextStyle(
-                          fontFamily: 'NicoMoji',
-                          fontSize: AppSizes.p18,
+                                    (route) => false);
+                              }
+                            : null,
+                        child: const Text(
+                          'Start Game',
+                          style: TextStyle(
+                            fontFamily: 'NicoMoji',
+                            fontSize: AppSizes.p18,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
