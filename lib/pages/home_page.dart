@@ -126,6 +126,7 @@ class _HomePageState extends State<HomePage> {
                     playerTwo: widget.playerTwo,
                     scoreX: scoreX,
                     scoreO: scoreO,
+                    isXTurn: isXTurn,
                   ),
                   AppSizes.gapH32,
                   Wrap(

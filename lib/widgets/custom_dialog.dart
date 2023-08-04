@@ -31,6 +31,7 @@ class CustomDialogWidget extends StatelessWidget {
             width: 28,
             child: OutlinedButton(
               onPressed: () {
+                resetBoard();
                 Navigator.of(context).pop();
               },
               style: OutlinedButton.styleFrom(
