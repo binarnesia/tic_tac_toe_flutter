@@ -4,8 +4,12 @@ import 'package:tic_tac_toe_flutter/constants/app_sizes.dart';
 class PlayersName extends StatelessWidget {
   const PlayersName({
     super.key,
+    required this.playerOne,
+    required this.playerTwo,
   });
 
+  final String playerOne;
+  final String playerTwo;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,8 +21,8 @@ class PlayersName extends StatelessWidget {
           Expanded(
             child: ElevatedButton(
               onPressed: () {},
-              child: const Text(
-                'Novita \n 2',
+              child: Text(
+                '$playerOne \n 2',
                 textAlign: TextAlign.center,
               ),
             ),
@@ -27,8 +31,8 @@ class PlayersName extends StatelessWidget {
           Expanded(
             child: TextButton(
               onPressed: () {},
-              child: const Text(
-                'Marta\n 3',
+              child: Text(
+                '$playerTwo\n 3',
                 textAlign: TextAlign.center,
               ),
             ),

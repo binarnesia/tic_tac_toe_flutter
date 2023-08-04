@@ -57,6 +57,7 @@ class TileCircle extends StatelessWidget {
     return SizedBox(
       child: SvgPicture.asset(
         AppAssets.circle,
+        width: (MediaQuery.of(context).size.width - 200) / 3,
         color: isWining ? AppColors.white : AppColors.secondaryColor,
       ),
     );
@@ -71,6 +72,7 @@ class TileCross extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       AppAssets.cross,
+      width: (MediaQuery.of(context).size.width - 200) / 3,
       color: isWining ? AppColors.white : AppColors.primaryColor,
     );
   }

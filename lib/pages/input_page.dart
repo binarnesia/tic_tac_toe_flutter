@@ -6,8 +6,33 @@ import 'package:tic_tac_toe_flutter/pages/home_page.dart';
 import 'package:tic_tac_toe_flutter/widgets/game_logo.dart';
 import 'package:tic_tac_toe_flutter/widgets/icon_game.dart';
 
-class InputPage extends StatelessWidget {
+class InputPage extends StatefulWidget {
   const InputPage({super.key});
+
+  @override
+  State<InputPage> createState() => _InputPageState();
+}
+
+late TextEditingController playerOneController;
+late TextEditingController playerTwoController;
+
+class _InputPageState extends State<InputPage> {
+  bool iscompleted() {
+    if (playerOneController.text != '' && playerTwoController.text != '') {
+      setState(() {});
+      return true;
+    } else {
+      setState(() {});
+      return false;
+    }
+  }
+
+  @override
+  void initState() {
+    playerOneController = TextEditingController();
+    playerTwoController = TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +51,9 @@ class InputPage extends StatelessWidget {
                   AppSizes.gapH32,
                   const GameLogo(),
                   AppSizes.gapH32,
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: playerOneController,
+                    decoration: const InputDecoration(
                       icon: IconGame(
                         size: AppSizes.p38,
                         isBorder: true,
@@ -36,8 +62,12 @@ class InputPage extends StatelessWidget {
                     ),
                   ),
                   AppSizes.gapH16,
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: playerTwoController,
+                    onChanged: (value) {
+                      iscompleted();
+                    },
+                    decoration: const InputDecoration(
                       icon: IconGame.circle(
                         size: AppSizes.p38,
                         isBorder: true,
@@ -50,14 +80,19 @@ class InputPage extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePage(),
-                            ),
-                            (route) => false);
-                      },
+                      onPressed: iscompleted()
+                          ? () {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomePage(
+                                      playerOne: playerOneController.text,
+                                      playerTwo: playerTwoController.text,
+                                    ),
+                                  ),
+                                  (route) => false);
+                            }
+                          : null,
                       child: const Text(
                         'Start Game',
                         style: TextStyle(

@@ -8,8 +8,10 @@ import 'package:tic_tac_toe_flutter/widgets/game_tile.dart';
 import 'package:tic_tac_toe_flutter/widgets/players_name.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.playerOne, required this.playerTwo});
 
+  final String playerOne;
+  final String playerTwo;
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -90,7 +92,10 @@ class _HomePageState extends State<HomePage> {
                 AppSizes.gapH32,
                 const GameLogo(),
                 AppSizes.gapH64,
-                const PlayersName(),
+                PlayersName(
+                  playerOne: widget.playerOne,
+                  playerTwo: widget.playerTwo,
+                ),
                 AppSizes.gapH32,
                 Wrap(
                   spacing: AppSizes.p16,

@@ -22,6 +22,9 @@ class ThemeButton {
         color: AppColors.primaryAccent,
         width: AppSizes.p2,
       ),
+      //Disabled
+      disabledBackgroundColor: AppColors.inactive,
+      disabledForegroundColor: AppColors.inactive300,
     ),
   );
   static final textButton = TextButtonThemeData(
@@ -42,6 +45,10 @@ class ThemeButton {
         color: AppColors.primaryAccent,
         width: AppSizes.p2,
       ),
+      //Disabled
+
+      disabledBackgroundColor: AppColors.inactive,
+      disabledForegroundColor: AppColors.inactive300,
     ),
   );
 }
