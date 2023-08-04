@@ -6,8 +6,9 @@ import 'package:tic_tac_toe_flutter/pages/input_page.dart';
 class GameActionButton extends StatelessWidget {
   const GameActionButton({
     super.key,
+    this.resetBoard,
   });
-
+  final Function()? resetBoard;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,7 +18,7 @@ class GameActionButton extends StatelessWidget {
         children: [
           Expanded(
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: resetBoard,
               child: const Text('Reset Game'),
             ),
           ),

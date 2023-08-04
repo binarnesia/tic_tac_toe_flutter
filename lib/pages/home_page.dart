@@ -14,11 +14,16 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-List<String> tileList = ['', '', '', '', '', '', '', '', ''];
-
 String isXTurn = 'x';
+late List<String> tileList;
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    tileList = ['', '', '', '', '', '', '', '', ''];
+    super.initState();
+  }
+
   void changeTurn(int index) {
     setState(() {
       if (isXTurn == 'x' && tileList[index] == '') {
@@ -66,6 +71,12 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void resetBoard() {
+    setState(() {
+      tileList = ['', '', '', '', '', '', '', '', ''];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +106,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 AppSizes.gapH32,
                 // Button
-                const GameActionButton()
+                GameActionButton(
+                  resetBoard: () => resetBoard(),
+                )
               ],
             ),
           ),
