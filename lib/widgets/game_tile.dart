@@ -5,15 +5,21 @@ import 'package:tic_tac_toe_flutter/constants/app_colors.dart';
 import 'package:tic_tac_toe_flutter/constants/app_sizes.dart';
 
 class GameTile extends StatelessWidget {
-  const GameTile({super.key, this.isWining = false, required this.content});
+  const GameTile({
+    super.key,
+    this.isWining = false,
+    required this.content,
+    this.changeTurn,
+  });
 
   final bool isWining;
   final String content;
+  final Function()? changeTurn;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: changeTurn,
       child: Container(
         padding: const EdgeInsets.all(AppSizes.p24),
         decoration: BoxDecoration(

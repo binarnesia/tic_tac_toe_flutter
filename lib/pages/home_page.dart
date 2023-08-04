@@ -14,19 +14,58 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-List<String> tileList = [
-  '0',
-  '1',
-  '1',
-  '1',
-  '0',
-  '',
-  '',
-  '',
-  '0',
-];
+List<String> tileList = ['', '', '', '', '', '', '', '', ''];
+
+String isXTurn = 'x';
 
 class _HomePageState extends State<HomePage> {
+  void changeTurn(int index) {
+    setState(() {
+      if (isXTurn == 'x' && tileList[index] == '') {
+        tileList[index] = 'x';
+        checkForTheWinner();
+        isXTurn = '0';
+      } else if (isXTurn == '0' && tileList[index] == '') {
+        tileList[index] = '0';
+        checkForTheWinner();
+        isXTurn = 'x';
+      }
+    });
+  }
+
+  ///Check if there is a winner in every turn
+  void checkForTheWinner() {
+    List winingLines = [
+      // Horizontal winning
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      // Vertical winning
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      // Diagonal winning
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (int i = 0; i < winingLines.length; i++) {
+      final int a = winingLines[i][0];
+      final int b = winingLines[i][1];
+      final int c = winingLines[i][2];
+
+      // final  (a, b, c) = winingLines[i];
+
+      if (tileList[a] != '' &&
+          tileList[b] != '' &&
+          tileList[c] != '' &&
+          tileList[a] == tileList[b] &&
+          tileList[b] == tileList[c]) {
+        print('winner $isXTurn');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +89,7 @@ class _HomePageState extends State<HomePage> {
                       GameTile(
                         content: tileList[i],
                         isWining: false,
+                        changeTurn: () => changeTurn(i),
                       ),
                   ],
                 ),
