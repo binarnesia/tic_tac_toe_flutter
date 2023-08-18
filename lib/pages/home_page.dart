@@ -22,6 +22,7 @@ late List<String> tileList;
 
 late int scoreX;
 late int scoreO;
+late List winingLine;
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -30,6 +31,7 @@ class _HomePageState extends State<HomePage> {
     isXTurn = 'x';
     scoreX = 0;
     scoreO = 0;
+    winingLine = [null, null, null];
     super.initState();
   }
 
@@ -78,7 +80,7 @@ class _HomePageState extends State<HomePage> {
         updateScore(isXTurn);
         final String winner =
             isXTurn == 'x' ? widget.playerOne : widget.playerTwo;
-
+        winingLine = [a, b, c];
         showDialog(
           barrierDismissible: false,
           context: context,
@@ -94,6 +96,7 @@ class _HomePageState extends State<HomePage> {
 
   void resetBoard() {
     setState(() {
+      winingLine = [null, null, null];
       isXTurn = 'x';
       tileList = ['', '', '', '', '', '', '', '', ''];
     });
@@ -134,11 +137,19 @@ class _HomePageState extends State<HomePage> {
                     runSpacing: AppSizes.p16,
                     children: [
                       for (int i = 0; i < 9; i++)
-                        GameTile(
-                          content: tileList[i],
-                          isWining: false,
-                          changeTurn: () => changeTurn(i),
-                        ),
+                        (winingLine[0] == i ||
+                                winingLine[1] == i ||
+                                winingLine[2] == i)
+                            ? GameTile(
+                                content: tileList[i],
+                                isWining: true,
+                                changeTurn: () => changeTurn(i),
+                              )
+                            : GameTile(
+                                content: tileList[i],
+                                isWining: false,
+                                changeTurn: () => changeTurn(i),
+                              ),
                     ],
                   ),
                   AppSizes.gapH32,
